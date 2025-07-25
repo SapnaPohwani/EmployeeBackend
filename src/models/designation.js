@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const designationSchema = new mongoose.Schema({
-  Title: { type: String, required: true },
-  Description:{type: String, required: true},
+  title: { type: String, required: true },
+  description:{type: String, required: true},
   
 }, { timestamps: true });
 

@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const employeeRoutes = require("./src/routes/employeeRoute");
+const designationRoutes = require("./src/routes/designationRoute");
+const departmentRoutes = require("./src/routes/departmentRoute");
 
 dotenv.config();
 const app = express();
@@ -14,6 +16,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
 app.use("/api/employees", employeeRoutes);
+app.use("/api/employees", designationRoutes);
+app.use("/api/employees", departmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
