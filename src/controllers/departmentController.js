@@ -22,7 +22,14 @@ exports.addDepartment = async (req, res) => {
 
 exports.getDepartment = async (req, res) => {
   try {
-    const allDepartments = await Department.find(); // Don't redefine `Designation`
+    const { department } = req.query;  // 👈 CHANGE from title to department
+    const query = {};
+
+    if (department) {
+      query.department = { $regex: department, $options: "i" };
+    }
+
+    const allDepartments = await Department.find(query);
     res.status(200).json(allDepartments);
   } catch (err) {
     res.status(500).json({ message: "Error fetching Department", error: err });
